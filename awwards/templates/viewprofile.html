@@ -1,0 +1,17 @@
+{%extends 'all-awwards/base.html'%}
+
+{% block content %}
+<div class="profile">
+<div class="container">
+
+  <div class="row">
+     
+    <img src="{{ profile.prof_picture.url }}" style="border-radius:30px;" class="pic-responsive pic" alt="Picture" width="200" height="200">
+
+    <h2 class="text-center">{{profile.user}}</h2>
+  
+  </div>
+</div>
+</div>
+
+{% endblock %}

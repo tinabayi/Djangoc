@@ -1,0 +1,26 @@
+{%extends 'all-awwards/base.html'%} 
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    {% if projects%}
+      <h2>Found {{ projects|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found 0 articles for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if projects %}
+    {% for image in projectss %}
+      <div class="col-sm-6 col-md-3">
+          <h1>{{image.project.url}}</h1>
+          <h1>{{image.project_description}}</h1>
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
