@@ -72,8 +72,8 @@ def image(request):
 
 def search_results(request):
 
-    if 'project' in request.GET and request.GET["project"]:
-        search_term = request.GET.get("project")
+    if 'project_name' in request.GET and request.GET["project_name"]:
+        search_term = request.GET.get("project_name")
         searched_projects = Image.search_by_project_name (search_term)
         message = f"{search_term}"
 

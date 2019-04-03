@@ -49,7 +49,7 @@ class Image(models.Model):
 
     @classmethod
     def search_by_project_name(cls, search_term):
-        project = cls.objects.filter(project_name__icontains=search_term).first()
+        project = cls.objects.filter(project_name__icontains=search_term)
         return project   
 
 class Comment(models.Model):
