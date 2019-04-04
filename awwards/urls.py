@@ -11,6 +11,7 @@ urlpatterns=[
     url(r'^view/profile/(\d+)', views.viewprofile, name='viewprofile'),
     url(r'^new/image$', views.new_image, name='new-image'),
     url(r'^new/comment$', views.comments, name='comments'),
+    url(r'^new/rating$', views.rating, name='rating'),
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^image/(\d+)',views.project, name ='project'),
 

@@ -2,7 +2,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Image,Comment
-from .forms import ProfileForm,NewImageForm,CommentForm
+from .forms import ProfileForm,NewImageForm,CommentForm,RatingForm
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -102,6 +102,20 @@ def comments(request):
         form = CommentForm()
     return render(request, 'comment.html', {"form": form})
 
+def rating(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = RatingForm(request.POST, request.FILES)
+        if form.is_valid():
+            ratings = form.save(commit=False)
+            ratings.user = current_user
+            ratings.save()
+
+            return redirect(welcome)
+
+    else:
+        form = RatingForm()
+    return render(request, 'rating.html', {"form": form})
 
 def project(request,project_id):
     try:

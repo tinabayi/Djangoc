@@ -10,7 +10,7 @@
 {% for item in projects %}
  <a href="/image/{{item.id}}"><img src="{{item.project.url}}" alt="image"></a>
 
-  
+ <button><a href="{%url 'rating'%}">Rate this project</a></button>
 
 <button><a href="{%url 'comments'%}">Comments</a></button>
 {% endfor %}

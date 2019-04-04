@@ -65,3 +65,22 @@ class Comment(models.Model):
     def get_comment(cls):
         comments = Comment.objects.all()
         return comments
+class Content(models.Model):
+    content = models.CharField(max_length =30)
+    def save_content(self):
+        self.save() 
+    def delete_content(self):
+        self.delete()  
+
+class Rating(models.Model):
+    design= models.CharField(max_length =30)
+    usability=models.CharField(max_length =30)
+    content = models.ManyToManyField(Content)
+    def save_rating(self):
+        self.save() 
+    def delete_rating(self):
+        self.delete() 
+    @classmethod
+    def get_rating(cls):
+        ratings = Rating.objects.all()
+        return ratings

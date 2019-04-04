@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Profile,Image,Comment
+from .models import Profile,Image,Comment,Rating
 
 
 
@@ -18,4 +18,8 @@ class CommentForm(forms.ModelForm):
         model = Comment
         exclude = ['image' ]
     
-      
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        exclude = ['' ]
+    
