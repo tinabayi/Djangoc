@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ImageSerializer,ProfileSerializer
+from rest_framework import status
+from .permissions import IsAdminOrReadOnly
+
 # from django.contrib.auth import User
 
 @login_required(login_url='/accounts/login/')
@@ -99,14 +102,37 @@ def comments(request):
         form = CommentForm()
     return render(request, 'comment.html', {"form": form})
 
-class ImageList(APIView):
-    def get(self, request, format=None):
-        all_project = Image.objects.all()
-        serializers = ImageSerializer(all_project, many=True)
-        return Response(serializers.data)
+
+def project(request,project_id):
+    try:
+        project = Image.objects.get(id = project_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"all-awwards/project.html", {"project": project})  
 
 class ProfileList(APIView):
     def get(self, request, format=None):
         all_profile = Profile.objects.all()
         serializers = ProfileSerializer(all_profile, many=True)
         return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializers = ProfileSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+class ImageList(APIView):
+
+    def get(self, request, format=None):
+        all_project = Image.objects.all()
+        serializers = ImageSerializer(all_project, many=True)
+        return Response(serializers.data)
+
+
+    def post(self, request, format=None):
+        serializers = ImageSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -3,13 +3,22 @@
 
 {% block content %}
 {{block.super}}
+<link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Merienda|Vidaloka" rel="stylesheet">
+<div class="container">
+<h1>Post your Project to be Awwarded!</h1>
 {% for item in projects %}
-  <img src="{{item.project.url}}" alt="">
+ <a href="/image/{{item.id}}"><img src="{{item.project.url}}" alt="image"></a>
+
+  
 
 <button><a href="{%url 'comments'%}">Comments</a></button>
 {% endfor %}
 {% for item in comments %}   
     {{item.comments}}
     {% endfor %}
-
+  </div>
+  
+    <div id= post> <button><a href="{%url 'new-image'%}">Post Project</a></button></div> 
+    
     {% endblock %}

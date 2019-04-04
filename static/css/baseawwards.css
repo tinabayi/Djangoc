@@ -2,3 +2,14 @@
 body{
  background-image: url("https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
 }
+h1{
+    font-family: 'Merienda', cursive;
+    
+}
+h2{
+    font-family: 'Merienda', cursive;
+}
+#post{
+    margin-left: 800px;
+    padding-top: 60px;
+}

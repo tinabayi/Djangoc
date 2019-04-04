@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Profile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    prof_picture = models.ImageField(upload_to = 'images/',null=True)
+    prof_picture = models.ImageField(upload_to = 'images/')
     user_bio = models.CharField(max_length =200)
     projects_posted=  models.IntegerField(null = True)
     contact_information=models.CharField(max_length=30,null=True)
@@ -28,12 +28,12 @@ class Profile(models.Model):
         return profiles
 
 class Image(models.Model):
-    project = models.ImageField(upload_to = 'images/')
+    project = models.ImageField(upload_to = 'images/',null = True)
     project_name = models.CharField(max_length =30,null=True)
-    project_description= models.TextField(max_length =30,null=True)
+    project_description= models.TextField(null=True)
     comments= models.CharField(max_length =30)
     likes = models.CharField(max_length =30)
-    user=models.ForeignKey(User)
+    user=models.ForeignKey(User,null = True)
     profile=models.ForeignKey(Profile,on_delete=models.CASCADE, null=True)
     project_url= models.CharField(max_length =30,null=True)
     def save_image(self):

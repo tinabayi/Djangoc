@@ -7,9 +7,9 @@
 
   <div class="row">
     {% if projects%}
-      <h2>Found {{ projects|length }} of searched term {{message}}</h2>
+      <h1>Found {{ projects|length }} of searched term {{message}}</h1>
     {% else %}
-      <h2> Found 0 articles for the search term {{message}}</h2>
+      <h1> Found 0 articles for the search term {{message}}</h1>
     {% endif %}
 
 
@@ -17,7 +17,7 @@
     <div class="col-sm-6 col-md-3">
 
  <img src="{{image.project.url}}">
- <h1>{{image.project_description}}</h1>
+ <h2>{{image.project_description}}</h2>
 </div>
 {% endfor %}
 
