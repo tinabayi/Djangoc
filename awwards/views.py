@@ -1,7 +1,7 @@
 
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Profile,Image,Comment
+from .models import Profile,Image,Comment,Rating
 from .forms import ProfileForm,NewImageForm,CommentForm,RatingForm
 from django.contrib.auth.models import User
 from rest_framework.response import Response
@@ -117,13 +117,44 @@ def rating(request):
         form = RatingForm()
     return render(request, 'rating.html', {"form": form})
 
-def project(request,project_id):
+def project(request,id):
     comments=Comment.objects.all()
+    project = Image.objects.get(id = id)
+    ratings =Rating.objects.filter(image=project).all() 
+    design=0
+    usability=0
+    content=0
+    num = len(ratings)
+    for n in ratings:
+        design+=round(n.design/num)
+        usability+=round(n.usability/num)
+        content+=round(n.content/num)
+
+
     try:
-        project = Image.objects.get(id = project_id)
-    except DoesNotExist:
+        project = Image.objects.get(id = id)
+    except Image.DoesNotExist:
         raise Http404()
-    return render(request,"all-awwards/project.html", {"project": project,"comments":comments})  
+    return render(request,"all-awwards/project.html", {"project": project,"comments":comments,"ratings":ratings,"usability":usability,"design":design,"content":content})
+  
+
+
+# @login_required(login_url='/accounts/login/')
+# def images(request,project_id):
+#     project = Project.objects.get(id = project_id)
+#     comments = Comments.objects.filter(project = project.id).all() 
+#     votes = Votes.objects.filter(project = project.id).all() 
+
+#     design=0
+#     usability=0
+#     content=0
+#     num = len(votes)
+
+#     for n in votes:
+#         design+=round(n.design/num)
+#         usability+=round(n.usability/num)
+#         content+=round(n.content/num)
+#     return render(request,"Pro.html", {"project":project,"comments":comments,"votes":votes,"usability":usability,"design":design,"content":content})
 
 class ProfileList(APIView):
     def get(self, request, format=None):

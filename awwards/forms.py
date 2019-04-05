@@ -21,5 +21,5 @@ class CommentForm(forms.ModelForm):
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        exclude = ['' ]
+        exclude = ['image']
     
