@@ -12,3 +12,12 @@ Awwards Application
 ~~~
 ## Installing
 ~~~
+~~~
+ ## Authors
+ ~~~
+ BAYIZERE Christine
+ ~~~
+ ## License
+ ~~~
+This project is licensed under the MIT License - see the LICENSE.md file for details
+

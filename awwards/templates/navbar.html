@@ -38,9 +38,13 @@
         </div>
         <div class="col-sm-4 col-md-4 navbar-right">
         <button class="but"><a href="/logout">Logout</a></button>
+        <div class="col-sm-4 col-md-4 navbar-right">
         </div>
-
+        <div id="button"  <button type="button" class="btn btn-info"><a href="{%url 'new-image'%}">Post Project</a></button>
+        </div> 
+        </div>
         <div class="col-sm-6 col-md-6">
+
           {% if user.is_authenticated %}
           <ul>
             <li class="dropdown">

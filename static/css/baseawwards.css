@@ -13,6 +13,21 @@ h2{
     margin-left: 800px;
     padding-top: 60px;
 }
+#button{
+    background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 50px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin-left: 1000px;
+ 
+ 
+}
 .but{
-    margin-left: 1600px;
+    margin-left: 1700px;
 }
