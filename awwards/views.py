@@ -16,9 +16,9 @@ from .permissions import IsAdminOrReadOnly
 def welcome(request):
 
     projects = Image.objects.all()
-    comments=Comment.objects.all()
+   
 
-    return render(request, 'welcome.html',{"projects":projects,"comments":comments})
+    return render(request, 'welcome.html',{"projects":projects})
 
 
 
@@ -60,18 +60,18 @@ def new_image(request):
         form = NewImageForm()
     return render(request, 'new_image.html', {"form": form})
 
-def image(request):
-    current_user = request.user
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.save(commit=False)
-            image.user = current_user
-            image.save()
+# def image(request):
+#     current_user = request.user
+#     if request.method == 'POST':
+#         form = ImageForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             image = form.save(commit=False)
+#             image.user = current_user
+#             image.save()
 
-    else:
-        form = ImageForm()
-    return render(request, 'image.html', {"form": form})
+#     else:
+#         form = ImageForm()
+#     return render(request, 'image.html', {"form": form})
 
 def search_results(request):
 
@@ -118,11 +118,12 @@ def rating(request):
     return render(request, 'rating.html', {"form": form})
 
 def project(request,project_id):
+    comments=Comment.objects.all()
     try:
         project = Image.objects.get(id = project_id)
     except DoesNotExist:
         raise Http404()
-    return render(request,"all-awwards/project.html", {"project": project})  
+    return render(request,"all-awwards/project.html", {"project": project,"comments":comments})  
 
 class ProfileList(APIView):
     def get(self, request, format=None):
